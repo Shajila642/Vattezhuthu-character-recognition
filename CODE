@@ -1,0 +1,47 @@
+
+
+from tensorflow.keras.models import Sequential
+
+from tensorflow.keras.layers import Dense, Dropout, Flatten, Conv2D
+
+import tensorflow as tf
+
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+
+train_datagen ImageDataGenerator (rescale=1./255) x_train train_datagen.flow_from_directory(
+
+'/content/drive/MyDrive/dataset Copy/train', target_size=(128, 128),
+
+batch_size=16,)
+
+test datagen ImageDataGenerator (rescale=1./255)
+
+x test test_datagen.flow_from_directory(
+
+'/content/drive/MyDrive/dataset Copy/test',
+
+target_size=(128,128),
+
+batch_size=1,
+
+)
+
+model-Sequential ()
+
+model.add(Conv2D (32, (3, 3), activation 'relu', input_shape=x_train.image_shape))
+
+model.add(Flatten())
+
+model.add(Dense (64,activation = 'relu'))
+
+model.add(Dense (41, activation='softmax'))
+
+model.compile (optimizer='adam', loss='mse',metrics=['accuracy'])
+
+model.fit (x_train, epochs=5, validation_data= x_test)
+
+print(model.summary())
+
+score model.evaluate(x test, verbose=1)
+
+print("Score is:", score)
